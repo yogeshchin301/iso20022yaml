@@ -1,0 +1,1381 @@
+---
+$schema: https://json-schema.org/draft-04/schema#
+id: urn:iso:std:iso:20022:tech:xsd:camt.055.001.12#
+definitions:
+  GenericIdentification30:
+    type: object
+    required:
+    - Id
+    - Issr
+    properties:
+      Id:
+        type: string
+      Issr:
+        type: string
+      SchmeNm:
+        type: string
+  AddressType3Choice:
+    type: object
+    required:
+    - Cd
+    - Prtry
+    properties:
+      Cd:
+        $ref: '#/definitions/AddressType2Code'
+      Prtry:
+        $ref: '#/definitions/GenericIdentification30'
+  PostalAddress27:
+    type: object
+    properties:
+      AdrTp:
+        $ref: '#/definitions/AddressType3Choice'
+      CareOf:
+        type: string
+      Dept:
+        type: string
+      SubDept:
+        type: string
+      StrtNm:
+        type: string
+      BldgNb:
+        type: string
+      BldgNm:
+        type: string
+      Flr:
+        type: string
+      UnitNb:
+        type: string
+      PstBx:
+        type: string
+      Room:
+        type: string
+      PstCd:
+        type: string
+      TwnNm:
+        type: string
+      TwnLctnNm:
+        type: string
+      DstrctNm:
+        type: string
+      CtrySubDvsn:
+        type: string
+      Ctry:
+        type: string
+      AdrLine:
+        type: array
+        items:
+          type: string
+        maxItems: 7
+        minItems: 0
+  OrganisationIdentificationSchemeName1Choice:
+    type: object
+    required:
+    - Cd
+    - Prtry
+    properties:
+      Cd:
+        type: string
+      Prtry:
+        type: string
+  GenericOrganisationIdentification3:
+    type: object
+    required:
+    - Id
+    properties:
+      Id:
+        type: string
+      SchmeNm:
+        $ref: '#/definitions/OrganisationIdentificationSchemeName1Choice'
+      Issr:
+        type: string
+  OrganisationIdentification39:
+    type: object
+    properties:
+      AnyBIC:
+        type: string
+      LEI:
+        type: string
+      Othr:
+        type: array
+        items:
+          $ref: '#/definitions/GenericOrganisationIdentification3'
+        minItems: 0
+  DateAndPlaceOfBirth1:
+    type: object
+    required:
+    - BirthDt
+    - CityOfBirth
+    - CtryOfBirth
+    properties:
+      BirthDt:
+        type: string
+      PrvcOfBirth:
+        type: string
+      CityOfBirth:
+        type: string
+      CtryOfBirth:
+        type: string
+  PersonIdentificationSchemeName1Choice:
+    type: object
+    required:
+    - Cd
+    - Prtry
+    properties:
+      Cd:
+        type: string
+      Prtry:
+        type: string
+  GenericPersonIdentification2:
+    type: object
+    required:
+    - Id
+    properties:
+      Id:
+        type: string
+      SchmeNm:
+        $ref: '#/definitions/PersonIdentificationSchemeName1Choice'
+      Issr:
+        type: string
+  PersonIdentification18:
+    type: object
+    properties:
+      DtAndPlcOfBirth:
+        $ref: '#/definitions/DateAndPlaceOfBirth1'
+      Othr:
+        type: array
+        items:
+          $ref: '#/definitions/GenericPersonIdentification2'
+        minItems: 0
+  Party52Choice:
+    type: object
+    required:
+    - OrgId
+    - PrvtId
+    properties:
+      OrgId:
+        $ref: '#/definitions/OrganisationIdentification39'
+      PrvtId:
+        $ref: '#/definitions/PersonIdentification18'
+  OtherContact1:
+    type: object
+    required:
+    - ChanlTp
+    properties:
+      ChanlTp:
+        type: string
+      Id:
+        type: string
+  Contact13:
+    type: object
+    properties:
+      NmPrfx:
+        $ref: '#/definitions/NamePrefix2Code'
+      Nm:
+        type: string
+      PhneNb:
+        type: string
+      MobNb:
+        type: string
+      FaxNb:
+        type: string
+      URLAdr:
+        type: string
+      EmailAdr:
+        type: string
+      EmailPurp:
+        type: string
+      JobTitl:
+        type: string
+      Rspnsblty:
+        type: string
+      Dept:
+        type: string
+      Othr:
+        type: array
+        items:
+          $ref: '#/definitions/OtherContact1'
+        minItems: 0
+      PrefrdMtd:
+        $ref: '#/definitions/PreferredContactMethod2Code'
+  PartyIdentification272:
+    type: object
+    properties:
+      Nm:
+        type: string
+      PstlAdr:
+        $ref: '#/definitions/PostalAddress27'
+      Id:
+        $ref: '#/definitions/Party52Choice'
+      CtryOfRes:
+        type: string
+      CtctDtls:
+        $ref: '#/definitions/Contact13'
+  ClearingSystemIdentification2Choice:
+    type: object
+    required:
+    - Cd
+    - Prtry
+    properties:
+      Cd:
+        type: string
+      Prtry:
+        type: string
+  ClearingSystemMemberIdentification2:
+    type: object
+    required:
+    - MmbId
+    properties:
+      ClrSysId:
+        $ref: '#/definitions/ClearingSystemIdentification2Choice'
+      MmbId:
+        type: string
+  FinancialIdentificationSchemeName1Choice:
+    type: object
+    required:
+    - Cd
+    - Prtry
+    properties:
+      Cd:
+        type: string
+      Prtry:
+        type: string
+  GenericFinancialIdentification1:
+    type: object
+    required:
+    - Id
+    properties:
+      Id:
+        type: string
+      SchmeNm:
+        $ref: '#/definitions/FinancialIdentificationSchemeName1Choice'
+      Issr:
+        type: string
+  FinancialInstitutionIdentification23:
+    type: object
+    properties:
+      BICFI:
+        type: string
+      ClrSysMmbId:
+        $ref: '#/definitions/ClearingSystemMemberIdentification2'
+      LEI:
+        type: string
+      Nm:
+        type: string
+      PstlAdr:
+        $ref: '#/definitions/PostalAddress27'
+      Othr:
+        $ref: '#/definitions/GenericFinancialIdentification1'
+  BranchData5:
+    type: object
+    properties:
+      Id:
+        type: string
+      LEI:
+        type: string
+      Nm:
+        type: string
+      PstlAdr:
+        $ref: '#/definitions/PostalAddress27'
+  BranchAndFinancialInstitutionIdentification8:
+    type: object
+    required:
+    - FinInstnId
+    properties:
+      FinInstnId:
+        $ref: '#/definitions/FinancialInstitutionIdentification23'
+      BrnchId:
+        $ref: '#/definitions/BranchData5'
+  Party50Choice:
+    type: object
+    required:
+    - Pty
+    - Agt
+    properties:
+      Pty:
+        $ref: '#/definitions/PartyIdentification272'
+      Agt:
+        $ref: '#/definitions/BranchAndFinancialInstitutionIdentification8'
+  CaseAssignment6:
+    type: object
+    required:
+    - Id
+    - Assgnr
+    - Assgne
+    - CreDtTm
+    properties:
+      Id:
+        type: string
+      Assgnr:
+        $ref: '#/definitions/Party50Choice'
+      Assgne:
+        $ref: '#/definitions/Party50Choice'
+      CreDtTm:
+        type: string
+        format: date-time
+  Case6:
+    type: object
+    required:
+    - Id
+    - Cretr
+    properties:
+      Id:
+        type: string
+      Cretr:
+        $ref: '#/definitions/Party50Choice'
+      ReopCaseIndctn:
+        type: boolean
+  ControlData1:
+    type: object
+    required:
+    - NbOfTxs
+    properties:
+      NbOfTxs:
+        type: string
+      CtrlSum:
+        type: number
+  CancellationReason33Choice:
+    type: object
+    required:
+    - Cd
+    - Prtry
+    properties:
+      Cd:
+        type: string
+      Prtry:
+        type: string
+  PaymentCancellationReason6:
+    type: object
+    properties:
+      Orgtr:
+        $ref: '#/definitions/PartyIdentification272'
+      Rsn:
+        $ref: '#/definitions/CancellationReason33Choice'
+      AddtlInf:
+        type: array
+        items:
+          type: string
+        minItems: 0
+  OriginalGroupHeader21:
+    type: object
+    required:
+    - OrgnlMsgId
+    - OrgnlMsgNmId
+    properties:
+      GrpCxlId:
+        type: string
+      Case:
+        $ref: '#/definitions/Case6'
+      OrgnlMsgId:
+        type: string
+      OrgnlMsgNmId:
+        type: string
+      OrgnlCreDtTm:
+        type: string
+        format: date-time
+      NbOfTxs:
+        type: string
+      CtrlSum:
+        type: number
+      GrpCxl:
+        type: boolean
+      CxlRsnInf:
+        type: array
+        items:
+          $ref: '#/definitions/PaymentCancellationReason6'
+        minItems: 0
+  OriginalGroupInformation29:
+    type: object
+    required:
+    - OrgnlMsgId
+    - OrgnlMsgNmId
+    properties:
+      OrgnlMsgId:
+        type: string
+      OrgnlMsgNmId:
+        type: string
+      OrgnlCreDtTm:
+        type: string
+        format: date-time
+  ActiveOrHistoricCurrencyAndAmount:
+    type: object
+    required:
+    - Ccy
+    properties:
+      Value:
+        type: number
+      Ccy:
+        type: string
+  DateAndDateTime2Choice:
+    type: object
+    required:
+    - Dt
+    - DtTm
+    properties:
+      Dt:
+        type: string
+      DtTm:
+        type: string
+        format: date-time
+  EquivalentAmount2:
+    type: object
+    required:
+    - Amt
+    - CcyOfTrf
+    properties:
+      Amt:
+        $ref: '#/definitions/ActiveOrHistoricCurrencyAndAmount'
+      CcyOfTrf:
+        type: string
+  AmountType4Choice:
+    type: object
+    required:
+    - InstdAmt
+    - EqvtAmt
+    properties:
+      InstdAmt:
+        $ref: '#/definitions/ActiveOrHistoricCurrencyAndAmount'
+      EqvtAmt:
+        $ref: '#/definitions/EquivalentAmount2'
+  AccountSchemeName1Choice:
+    type: object
+    required:
+    - Cd
+    - Prtry
+    properties:
+      Cd:
+        type: string
+      Prtry:
+        type: string
+  GenericAccountIdentification1:
+    type: object
+    required:
+    - Id
+    properties:
+      Id:
+        type: string
+      SchmeNm:
+        $ref: '#/definitions/AccountSchemeName1Choice'
+      Issr:
+        type: string
+  AccountIdentification4Choice:
+    type: object
+    required:
+    - IBAN
+    - Othr
+    properties:
+      IBAN:
+        type: string
+      Othr:
+        $ref: '#/definitions/GenericAccountIdentification1'
+  CashAccountType2Choice:
+    type: object
+    required:
+    - Cd
+    - Prtry
+    properties:
+      Cd:
+        type: string
+      Prtry:
+        type: string
+  ProxyAccountType1Choice:
+    type: object
+    required:
+    - Cd
+    - Prtry
+    properties:
+      Cd:
+        type: string
+      Prtry:
+        type: string
+  ProxyAccountIdentification1:
+    type: object
+    required:
+    - Id
+    properties:
+      Tp:
+        $ref: '#/definitions/ProxyAccountType1Choice'
+      Id:
+        type: string
+  CashAccount40:
+    type: object
+    properties:
+      Id:
+        $ref: '#/definitions/AccountIdentification4Choice'
+      Tp:
+        $ref: '#/definitions/CashAccountType2Choice'
+      Ccy:
+        type: string
+      Nm:
+        type: string
+      Prxy:
+        $ref: '#/definitions/ProxyAccountIdentification1'
+  ClearingSystemIdentification3Choice:
+    type: object
+    required:
+    - Cd
+    - Prtry
+    properties:
+      Cd:
+        type: string
+      Prtry:
+        type: string
+  SettlementInstruction15:
+    type: object
+    required:
+    - SttlmMtd
+    properties:
+      SttlmMtd:
+        $ref: '#/definitions/SettlementMethod1Code'
+      SttlmAcct:
+        $ref: '#/definitions/CashAccount40'
+      ClrSys:
+        $ref: '#/definitions/ClearingSystemIdentification3Choice'
+      InstgRmbrsmntAgt:
+        $ref: '#/definitions/BranchAndFinancialInstitutionIdentification8'
+      InstgRmbrsmntAgtAcct:
+        $ref: '#/definitions/CashAccount40'
+      InstdRmbrsmntAgt:
+        $ref: '#/definitions/BranchAndFinancialInstitutionIdentification8'
+      InstdRmbrsmntAgtAcct:
+        $ref: '#/definitions/CashAccount40'
+      ThrdRmbrsmntAgt:
+        $ref: '#/definitions/BranchAndFinancialInstitutionIdentification8'
+      ThrdRmbrsmntAgtAcct:
+        $ref: '#/definitions/CashAccount40'
+  ServiceLevel8Choice:
+    type: object
+    required:
+    - Cd
+    - Prtry
+    properties:
+      Cd:
+        type: string
+      Prtry:
+        type: string
+  LocalInstrument2Choice:
+    type: object
+    required:
+    - Cd
+    - Prtry
+    properties:
+      Cd:
+        type: string
+      Prtry:
+        type: string
+  CategoryPurpose1Choice:
+    type: object
+    required:
+    - Cd
+    - Prtry
+    properties:
+      Cd:
+        type: string
+      Prtry:
+        type: string
+  PaymentTypeInformation27:
+    type: object
+    properties:
+      InstrPrty:
+        $ref: '#/definitions/Priority2Code'
+      ClrChanl:
+        $ref: '#/definitions/ClearingChannel2Code'
+      SvcLvl:
+        type: array
+        items:
+          $ref: '#/definitions/ServiceLevel8Choice'
+        minItems: 0
+      LclInstrm:
+        $ref: '#/definitions/LocalInstrument2Choice'
+      SeqTp:
+        $ref: '#/definitions/SequenceType3Code'
+      CtgyPurp:
+        $ref: '#/definitions/CategoryPurpose1Choice'
+  FrequencyPeriod1:
+    type: object
+    required:
+    - Tp
+    - CntPerPrd
+    properties:
+      Tp:
+        $ref: '#/definitions/Frequency6Code'
+      CntPerPrd:
+        type: number
+  FrequencyAndMoment1:
+    type: object
+    required:
+    - Tp
+    - PtInTm
+    properties:
+      Tp:
+        $ref: '#/definitions/Frequency6Code'
+      PtInTm:
+        type: string
+  Frequency36Choice:
+    type: object
+    required:
+    - Tp
+    - Prd
+    - PtInTm
+    properties:
+      Tp:
+        $ref: '#/definitions/Frequency6Code'
+      Prd:
+        $ref: '#/definitions/FrequencyPeriod1'
+      PtInTm:
+        $ref: '#/definitions/FrequencyAndMoment1'
+  MandateSetupReason1Choice:
+    type: object
+    required:
+    - Cd
+    - Prtry
+    properties:
+      Cd:
+        type: string
+      Prtry:
+        type: string
+  AmendmentInformationDetails15:
+    type: object
+    properties:
+      OrgnlMndtId:
+        type: string
+      OrgnlCdtrSchmeId:
+        $ref: '#/definitions/PartyIdentification272'
+      OrgnlCdtrAgt:
+        $ref: '#/definitions/BranchAndFinancialInstitutionIdentification8'
+      OrgnlCdtrAgtAcct:
+        $ref: '#/definitions/CashAccount40'
+      OrgnlDbtr:
+        $ref: '#/definitions/PartyIdentification272'
+      OrgnlDbtrAcct:
+        $ref: '#/definitions/CashAccount40'
+      OrgnlDbtrAgt:
+        $ref: '#/definitions/BranchAndFinancialInstitutionIdentification8'
+      OrgnlDbtrAgtAcct:
+        $ref: '#/definitions/CashAccount40'
+      OrgnlFnlColltnDt:
+        type: string
+      OrgnlFrqcy:
+        $ref: '#/definitions/Frequency36Choice'
+      OrgnlRsn:
+        $ref: '#/definitions/MandateSetupReason1Choice'
+      OrgnlTrckgDays:
+        type: string
+  MandateRelatedInformation16:
+    type: object
+    properties:
+      MndtId:
+        type: string
+      DtOfSgntr:
+        type: string
+      AmdmntInd:
+        type: boolean
+      AmdmntInfDtls:
+        $ref: '#/definitions/AmendmentInformationDetails15'
+      ElctrncSgntr:
+        type: string
+      FrstColltnDt:
+        type: string
+      FnlColltnDt:
+        type: string
+      Frqcy:
+        $ref: '#/definitions/Frequency36Choice'
+      Rsn:
+        $ref: '#/definitions/MandateSetupReason1Choice'
+      TrckgDays:
+        type: string
+  MandateClassification1Choice:
+    type: object
+    required:
+    - Cd
+    - Prtry
+    properties:
+      Cd:
+        $ref: '#/definitions/MandateClassification1Code'
+      Prtry:
+        type: string
+  MandateTypeInformation2:
+    type: object
+    properties:
+      SvcLvl:
+        $ref: '#/definitions/ServiceLevel8Choice'
+      LclInstrm:
+        $ref: '#/definitions/LocalInstrument2Choice'
+      CtgyPurp:
+        $ref: '#/definitions/CategoryPurpose1Choice'
+      Clssfctn:
+        $ref: '#/definitions/MandateClassification1Choice'
+  CreditTransferMandateData1:
+    type: object
+    properties:
+      MndtId:
+        type: string
+      Tp:
+        $ref: '#/definitions/MandateTypeInformation2'
+      DtOfSgntr:
+        type: string
+      DtOfVrfctn:
+        type: string
+        format: date-time
+      ElctrncSgntr:
+        type: array
+        items:
+          type: integer
+      FrstPmtDt:
+        type: string
+      FnlPmtDt:
+        type: string
+      Frqcy:
+        $ref: '#/definitions/Frequency36Choice'
+      Rsn:
+        $ref: '#/definitions/MandateSetupReason1Choice'
+  MandateRelatedData3Choice:
+    type: object
+    properties:
+      DrctDbtMndt:
+        $ref: '#/definitions/MandateRelatedInformation16'
+      CdtTrfMndt:
+        $ref: '#/definitions/CreditTransferMandateData1'
+  DocumentType2Choice:
+    type: object
+    required:
+    - Cd
+    - Prtry
+    properties:
+      Cd:
+        type: string
+      Prtry:
+        type: string
+  DocumentType1:
+    type: object
+    required:
+    - CdOrPrtry
+    properties:
+      CdOrPrtry:
+        $ref: '#/definitions/DocumentType2Choice'
+      Issr:
+        type: string
+  DateType2Choice:
+    type: object
+    required:
+    - Cd
+    - Prtry
+    properties:
+      Cd:
+        type: string
+      Prtry:
+        type: string
+  DateAndType1:
+    type: object
+    required:
+    - Tp
+    - Dt
+    properties:
+      Tp:
+        $ref: '#/definitions/DateType2Choice'
+      Dt:
+        type: string
+  DocumentLineType1Choice:
+    type: object
+    required:
+    - Cd
+    - Prtry
+    properties:
+      Cd:
+        type: string
+      Prtry:
+        type: string
+  DocumentLineType1:
+    type: object
+    required:
+    - CdOrPrtry
+    properties:
+      CdOrPrtry:
+        $ref: '#/definitions/DocumentLineType1Choice'
+      Issr:
+        type: string
+  DocumentLineIdentification1:
+    type: object
+    properties:
+      Tp:
+        $ref: '#/definitions/DocumentLineType1'
+      Nb:
+        type: string
+      RltdDt:
+        type: string
+  DocumentAmountType1Choice:
+    type: object
+    required:
+    - Cd
+    - Prtry
+    properties:
+      Cd:
+        type: string
+      Prtry:
+        type: string
+  DocumentAmount1:
+    type: object
+    required:
+    - Tp
+    - Amt
+    properties:
+      Tp:
+        $ref: '#/definitions/DocumentAmountType1Choice'
+      Amt:
+        $ref: '#/definitions/ActiveOrHistoricCurrencyAndAmount'
+  DocumentAdjustment1:
+    type: object
+    required:
+    - Amt
+    properties:
+      Amt:
+        $ref: '#/definitions/ActiveOrHistoricCurrencyAndAmount'
+      CdtDbtInd:
+        $ref: '#/definitions/CreditDebitCode'
+      Rsn:
+        type: string
+      AddtlInf:
+        type: string
+  RemittanceAmount4:
+    type: object
+    properties:
+      RmtAmtAndTp:
+        type: array
+        items:
+          $ref: '#/definitions/DocumentAmount1'
+        minItems: 0
+      AdjstmntAmtAndRsn:
+        type: array
+        items:
+          $ref: '#/definitions/DocumentAdjustment1'
+        minItems: 0
+  DocumentLineInformation2:
+    type: object
+    required:
+    - Id
+    properties:
+      Id:
+        type: array
+        items:
+          $ref: '#/definitions/DocumentLineIdentification1'
+        minItems: 1
+      Desc:
+        type: string
+      Amt:
+        $ref: '#/definitions/RemittanceAmount4'
+  ReferredDocumentInformation8:
+    type: object
+    properties:
+      Tp:
+        $ref: '#/definitions/DocumentType1'
+      Nb:
+        type: string
+      RltdDt:
+        $ref: '#/definitions/DateAndType1'
+      LineDtls:
+        type: array
+        items:
+          $ref: '#/definitions/DocumentLineInformation2'
+        minItems: 0
+  CreditorReferenceType2Choice:
+    type: object
+    required:
+    - Cd
+    - Prtry
+    properties:
+      Cd:
+        type: string
+      Prtry:
+        type: string
+  CreditorReferenceType3:
+    type: object
+    required:
+    - CdOrPrtry
+    properties:
+      CdOrPrtry:
+        $ref: '#/definitions/CreditorReferenceType2Choice'
+      Issr:
+        type: string
+  CreditorReferenceInformation3:
+    type: object
+    properties:
+      Tp:
+        $ref: '#/definitions/CreditorReferenceType3'
+      Ref:
+        type: string
+  TaxParty1:
+    type: object
+    properties:
+      TaxId:
+        type: string
+      RegnId:
+        type: string
+      TaxTp:
+        type: string
+  TaxAuthorisation1:
+    type: object
+    properties:
+      Titl:
+        type: string
+      Nm:
+        type: string
+  TaxParty2:
+    type: object
+    properties:
+      TaxId:
+        type: string
+      RegnId:
+        type: string
+      TaxTp:
+        type: string
+      Authstn:
+        $ref: '#/definitions/TaxAuthorisation1'
+  DatePeriod2:
+    type: object
+    required:
+    - FrDt
+    - ToDt
+    properties:
+      FrDt:
+        type: string
+      ToDt:
+        type: string
+  TaxPeriod3:
+    type: object
+    properties:
+      Yr:
+        allOf:
+        - {}
+      Tp:
+        $ref: '#/definitions/TaxRecordPeriod1Code'
+      FrToDt:
+        $ref: '#/definitions/DatePeriod2'
+  TaxRecordDetails3:
+    type: object
+    required:
+    - Amt
+    properties:
+      Prd:
+        $ref: '#/definitions/TaxPeriod3'
+      Amt:
+        $ref: '#/definitions/ActiveOrHistoricCurrencyAndAmount'
+  TaxAmount3:
+    type: object
+    properties:
+      Rate:
+        type: number
+      TaxblBaseAmt:
+        $ref: '#/definitions/ActiveOrHistoricCurrencyAndAmount'
+      TtlAmt:
+        $ref: '#/definitions/ActiveOrHistoricCurrencyAndAmount'
+      Dtls:
+        type: array
+        items:
+          $ref: '#/definitions/TaxRecordDetails3'
+        minItems: 0
+  TaxRecord3:
+    type: object
+    properties:
+      Tp:
+        type: string
+      Ctgy:
+        type: string
+      CtgyDtls:
+        type: string
+      DbtrSts:
+        type: string
+      CertId:
+        type: string
+      FrmsCd:
+        type: string
+      Prd:
+        $ref: '#/definitions/TaxPeriod3'
+      TaxAmt:
+        $ref: '#/definitions/TaxAmount3'
+      AddtlInf:
+        type: string
+  TaxData1:
+    type: object
+    properties:
+      Cdtr:
+        $ref: '#/definitions/TaxParty1'
+      Dbtr:
+        $ref: '#/definitions/TaxParty2'
+      UltmtDbtr:
+        $ref: '#/definitions/TaxParty2'
+      AdmstnZone:
+        type: string
+      RefNb:
+        type: string
+      Mtd:
+        type: string
+      TtlTaxblBaseAmt:
+        $ref: '#/definitions/ActiveOrHistoricCurrencyAndAmount'
+      TtlTaxAmt:
+        $ref: '#/definitions/ActiveOrHistoricCurrencyAndAmount'
+      Dt:
+        type: string
+      SeqNb:
+        type: number
+      Rcrd:
+        type: array
+        items:
+          $ref: '#/definitions/TaxRecord3'
+        minItems: 0
+  GarnishmentType1Choice:
+    type: object
+    required:
+    - Cd
+    - Prtry
+    properties:
+      Cd:
+        type: string
+      Prtry:
+        type: string
+  GarnishmentType1:
+    type: object
+    required:
+    - CdOrPrtry
+    properties:
+      CdOrPrtry:
+        $ref: '#/definitions/GarnishmentType1Choice'
+      Issr:
+        type: string
+  Garnishment4:
+    type: object
+    required:
+    - Tp
+    properties:
+      Tp:
+        $ref: '#/definitions/GarnishmentType1'
+      Grnshee:
+        $ref: '#/definitions/PartyIdentification272'
+      GrnshmtAdmstr:
+        $ref: '#/definitions/PartyIdentification272'
+      RefNb:
+        type: string
+      Dt:
+        type: string
+      RmtdAmt:
+        $ref: '#/definitions/ActiveOrHistoricCurrencyAndAmount'
+      FmlyMdclInsrncInd:
+        type: boolean
+      MplyeeTermntnInd:
+        type: boolean
+  StructuredRemittanceInformation18:
+    type: object
+    properties:
+      RfrdDocInf:
+        type: array
+        items:
+          $ref: '#/definitions/ReferredDocumentInformation8'
+        minItems: 0
+      RfrdDocAmt:
+        $ref: '#/definitions/RemittanceAmount4'
+      CdtrRefInf:
+        $ref: '#/definitions/CreditorReferenceInformation3'
+      Invcr:
+        $ref: '#/definitions/PartyIdentification272'
+      Invcee:
+        $ref: '#/definitions/PartyIdentification272'
+      TaxRmt:
+        $ref: '#/definitions/TaxData1'
+      GrnshmtRmt:
+        $ref: '#/definitions/Garnishment4'
+      AddtlRmtInf:
+        type: array
+        items:
+          type: string
+        maxItems: 3
+        minItems: 0
+  RemittanceInformation22:
+    type: object
+    properties:
+      Ustrd:
+        type: array
+        items:
+          type: string
+        minItems: 0
+      Strd:
+        type: array
+        items:
+          $ref: '#/definitions/StructuredRemittanceInformation18'
+        minItems: 0
+  Purpose2Choice:
+    type: object
+    required:
+    - Cd
+    - Prtry
+    properties:
+      Cd:
+        type: string
+      Prtry:
+        type: string
+  OriginalTransactionReference42:
+    type: object
+    properties:
+      IntrBkSttlmAmt:
+        $ref: '#/definitions/ActiveOrHistoricCurrencyAndAmount'
+      Amt:
+        $ref: '#/definitions/AmountType4Choice'
+      IntrBkSttlmDt:
+        type: string
+      ReqdColltnDt:
+        type: string
+      ReqdExctnDt:
+        $ref: '#/definitions/DateAndDateTime2Choice'
+      CdtrSchmeId:
+        $ref: '#/definitions/PartyIdentification272'
+      SttlmInf:
+        $ref: '#/definitions/SettlementInstruction15'
+      PmtTpInf:
+        $ref: '#/definitions/PaymentTypeInformation27'
+      PmtMtd:
+        $ref: '#/definitions/PaymentMethod4Code'
+      MndtRltdInf:
+        $ref: '#/definitions/MandateRelatedData3Choice'
+      RmtInf:
+        $ref: '#/definitions/RemittanceInformation22'
+      UltmtDbtr:
+        $ref: '#/definitions/Party50Choice'
+      Dbtr:
+        $ref: '#/definitions/Party50Choice'
+      DbtrAcct:
+        $ref: '#/definitions/CashAccount40'
+      DbtrAgt:
+        $ref: '#/definitions/BranchAndFinancialInstitutionIdentification8'
+      DbtrAgtAcct:
+        $ref: '#/definitions/CashAccount40'
+      CdtrAgt:
+        $ref: '#/definitions/BranchAndFinancialInstitutionIdentification8'
+      CdtrAgtAcct:
+        $ref: '#/definitions/CashAccount40'
+      Cdtr:
+        $ref: '#/definitions/Party50Choice'
+      CdtrAcct:
+        $ref: '#/definitions/CashAccount40'
+      UltmtCdtr:
+        $ref: '#/definitions/Party50Choice'
+      Purp:
+        $ref: '#/definitions/Purpose2Choice'
+  SupplementaryDataEnvelope1:
+    type: object
+    required:
+    - Any
+    properties:
+      Any:
+        type: object
+  SupplementaryData1:
+    type: object
+    required:
+    - Envlp
+    properties:
+      PlcAndNm:
+        type: string
+      Envlp:
+        $ref: '#/definitions/SupplementaryDataEnvelope1'
+  PaymentTransaction154:
+    type: object
+    properties:
+      CxlId:
+        type: string
+      Case:
+        $ref: '#/definitions/Case6'
+      OrgnlInstrId:
+        type: string
+      OrgnlEndToEndId:
+        type: string
+      OrgnlUETR:
+        type: string
+      OrgnlInstdAmt:
+        $ref: '#/definitions/ActiveOrHistoricCurrencyAndAmount'
+      OrgnlReqdExctnDt:
+        $ref: '#/definitions/DateAndDateTime2Choice'
+      OrgnlReqdColltnDt:
+        type: string
+      CxlRsnInf:
+        type: array
+        items:
+          $ref: '#/definitions/PaymentCancellationReason6'
+        minItems: 0
+      OrgnlTxRef:
+        $ref: '#/definitions/OriginalTransactionReference42'
+      SplmtryData:
+        type: array
+        items:
+          $ref: '#/definitions/SupplementaryData1'
+        minItems: 0
+  OriginalPaymentInstruction49:
+    type: object
+    required:
+    - OrgnlPmtInfId
+    properties:
+      PmtCxlId:
+        type: string
+      Case:
+        $ref: '#/definitions/Case6'
+      OrgnlPmtInfId:
+        type: string
+      OrgnlGrpInf:
+        $ref: '#/definitions/OriginalGroupInformation29'
+      NbOfTxs:
+        type: string
+      CtrlSum:
+        type: number
+      PmtInfCxl:
+        type: boolean
+      CxlRsnInf:
+        type: array
+        items:
+          $ref: '#/definitions/PaymentCancellationReason6'
+        minItems: 0
+      TxInf:
+        type: array
+        items:
+          $ref: '#/definitions/PaymentTransaction154'
+        minItems: 0
+  UnderlyingTransaction33:
+    type: object
+    properties:
+      OrgnlGrpInfAndCxl:
+        $ref: '#/definitions/OriginalGroupHeader21'
+      OrgnlPmtInfAndCxl:
+        type: array
+        items:
+          $ref: '#/definitions/OriginalPaymentInstruction49'
+        minItems: 0
+  CustomerPaymentCancellationRequestV12:
+    type: object
+    required:
+    - Assgnmt
+    - Undrlyg
+    properties:
+      Assgnmt:
+        $ref: '#/definitions/CaseAssignment6'
+      Case:
+        $ref: '#/definitions/Case6'
+      CtrlData:
+        $ref: '#/definitions/ControlData1'
+      Undrlyg:
+        type: array
+        items:
+          $ref: '#/definitions/UnderlyingTransaction33'
+        minItems: 1
+      SplmtryData:
+        type: array
+        items:
+          $ref: '#/definitions/SupplementaryData1'
+        minItems: 0
+  Document:
+    type: object
+    required:
+    - CstmrPmtCxlReq
+    properties:
+      CstmrPmtCxlReq:
+        $ref: '#/definitions/CustomerPaymentCancellationRequestV12'
+  AddressType2Code:
+    type: string
+    enum:
+    - ADDR
+    - PBOX
+    - HOME
+    - BIZZ
+    - MLTO
+    - DLVY
+  NamePrefix2Code:
+    type: string
+    enum:
+    - DOCT
+    - MADM
+    - MISS
+    - MIST
+    - MIKS
+  PreferredContactMethod2Code:
+    type: string
+    enum:
+    - MAIL
+    - FAXX
+    - LETT
+    - CELL
+    - ONLI
+    - PHON
+  SettlementMethod1Code:
+    type: string
+    enum:
+    - INDA
+    - INGA
+    - COVE
+    - CLRG
+  Priority2Code:
+    type: string
+    enum:
+    - HIGH
+    - NORM
+  ClearingChannel2Code:
+    type: string
+    enum:
+    - RTGS
+    - RTNS
+    - MPNS
+    - BOOK
+  SequenceType3Code:
+    type: string
+    enum:
+    - FRST
+    - RCUR
+    - FNAL
+    - OOFF
+    - RPRE
+  PaymentMethod4Code:
+    type: string
+    enum:
+    - CHK
+    - TRF
+    - DD
+    - TRA
+  Frequency6Code:
+    type: string
+    enum:
+    - YEAR
+    - MNTH
+    - QURT
+    - MIAN
+    - WEEK
+    - DAIL
+    - ADHO
+    - INDA
+    - FRTN
+  MandateClassification1Code:
+    type: string
+    enum:
+    - FIXE
+    - USGB
+    - VARI
+  CreditDebitCode:
+    type: string
+    enum:
+    - CRDT
+    - DBIT
+  TaxRecordPeriod1Code:
+    type: string
+    enum:
+    - MM01
+    - MM02
+    - MM03
+    - MM04
+    - MM05
+    - MM06
+    - MM07
+    - MM08
+    - MM09
+    - MM10
+    - MM11
+    - MM12
+    - QTR1
+    - QTR2
+    - QTR3
+    - QTR4
+    - HLF1
+    - HLF2
+properties:
+  Document:
+    $ref: '#/definitions/Document'
